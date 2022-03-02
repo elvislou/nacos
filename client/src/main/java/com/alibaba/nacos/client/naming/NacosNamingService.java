@@ -521,6 +521,13 @@ public class NacosNamingService implements NamingService {
     public BeatReactor getBeatReactor() {
         return beatReactor;
     }
+
+    public String getNacosDomain() {
+        if (serverProxy != null) {
+            return serverProxy.getNacosDomain();
+        }
+        return null;
+    }
     
     @Override
     public void shutDown() throws NacosException {

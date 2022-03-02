@@ -717,6 +717,10 @@ public class NamingProxy implements Closeable {
     public String getNamespaceId() {
         return namespaceId;
     }
+
+    public String getNacosDomain() {
+        return nacosDomain;
+    }
     
     public void setServerPort(int serverPort) {
         this.serverPort = serverPort;

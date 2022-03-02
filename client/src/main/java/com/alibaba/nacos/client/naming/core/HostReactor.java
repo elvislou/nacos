@@ -249,8 +249,7 @@ public class HostReactor implements Closeable {
             serviceInfo.setJsonFromServer(json);
             
             if (changed) {
-                NotifyCenter.publishEvent(new InstancesChangeEvent(serviceInfo.getName(), serviceInfo.getGroupName(),
-                        serviceInfo.getClusters(), serviceInfo.getHosts()));
+                NotifyCenter.publishEvent(generateEvent(serviceInfo));
                 DiskCache.write(serviceInfo, cacheDir);
             }
             
@@ -259,8 +258,7 @@ public class HostReactor implements Closeable {
             NAMING_LOGGER.info("init new ips(" + serviceInfo.ipCount() + ") service: " + serviceInfo.getKey() + " -> "
                     + JacksonUtils.toJson(serviceInfo.getHosts()));
             serviceInfoMap.put(serviceInfo.getKey(), serviceInfo);
-            NotifyCenter.publishEvent(new InstancesChangeEvent(serviceInfo.getName(), serviceInfo.getGroupName(),
-                    serviceInfo.getClusters(), serviceInfo.getHosts()));
+            NotifyCenter.publishEvent(generateEvent(serviceInfo));
             serviceInfo.setJsonFromServer(json);
             DiskCache.write(serviceInfo, cacheDir);
         }
@@ -273,6 +271,11 @@ public class HostReactor implements Closeable {
         }
         
         return serviceInfo;
+    }
+
+    private InstancesChangeEvent generateEvent(ServiceInfo serviceInfo) {
+        return new InstancesChangeEvent(serviceInfo.getName(), serviceInfo.getGroupName(),
+                serviceInfo.getClusters(), serviceInfo.getHosts(), serverProxy.getNacosDomain());
     }
     
     private void updateBeatInfo(Set<Instance> modHosts) {

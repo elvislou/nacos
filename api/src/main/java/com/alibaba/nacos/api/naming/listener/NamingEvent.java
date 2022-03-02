@@ -34,6 +34,8 @@ public class NamingEvent implements Event {
     private String clusters;
     
     private List<Instance> instances;
+
+    private String nacosDomain;
     
     public NamingEvent(String serviceName, List<Instance> instances) {
         this.serviceName = serviceName;
@@ -45,6 +47,15 @@ public class NamingEvent implements Event {
         this.groupName = groupName;
         this.clusters = clusters;
         this.instances = instances;
+    }
+
+    public NamingEvent(String serviceName, String groupName, String clusters, List<Instance> instances,
+                       String nacosDomain) {
+        this.serviceName = serviceName;
+        this.groupName = groupName;
+        this.clusters = clusters;
+        this.instances = instances;
+        this.nacosDomain = nacosDomain;
     }
     
     public String getServiceName() {
@@ -77,5 +88,13 @@ public class NamingEvent implements Event {
     
     public void setClusters(String clusters) {
         this.clusters = clusters;
+    }
+
+    public String getNacosDomain() {
+        return nacosDomain;
+    }
+
+    public void setNacosDomain(String nacosDomain) {
+        this.nacosDomain = nacosDomain;
     }
 }

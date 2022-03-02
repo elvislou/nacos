@@ -129,7 +129,7 @@ public class InstancesChangeNotifier extends Subscriber<InstancesChangeEvent> {
     private com.alibaba.nacos.api.naming.listener.Event transferToNamingEvent(
             InstancesChangeEvent instancesChangeEvent) {
         return new NamingEvent(instancesChangeEvent.getServiceName(), instancesChangeEvent.getGroupName(),
-                instancesChangeEvent.getClusters(), instancesChangeEvent.getHosts());
+                instancesChangeEvent.getClusters(), instancesChangeEvent.getHosts(), instancesChangeEvent.getNacosDomain());
     }
     
     @Override

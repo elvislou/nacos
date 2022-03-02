@@ -38,12 +38,15 @@ public class InstancesChangeEvent extends Event {
     private final String clusters;
     
     private final List<Instance> hosts;
+
+    private final String nacosDomain;
     
-    public InstancesChangeEvent(String serviceName, String groupName, String clusters, List<Instance> hosts) {
+    public InstancesChangeEvent(String serviceName, String groupName, String clusters, List<Instance> hosts, String nacosDomain) {
         this.serviceName = serviceName;
         this.groupName = groupName;
         this.clusters = clusters;
         this.hosts = hosts;
+        this.nacosDomain = nacosDomain;
     }
     
     public String getServiceName() {
@@ -61,5 +64,8 @@ public class InstancesChangeEvent extends Event {
     public List<Instance> getHosts() {
         return hosts;
     }
-    
+
+    public String getNacosDomain() {
+        return nacosDomain;
+    }
 }
